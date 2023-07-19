@@ -197,7 +197,7 @@ const MainPage = () => {
                 >
                   <div className={style.contentsbox}>
                     <img
-                      src={process.env.PUBLIC_URL + "/image/test10.jpg"}
+                      src={process.env.PUBLIC_URL + "/image/test13.png"}
                       alt="test"
                       style={{
                         width: "100%",
@@ -248,7 +248,7 @@ const MainPage = () => {
                 >
                   <div className={style.contentsbox}>
                     <img
-                      src={process.env.PUBLIC_URL + "/image/test13.png"}
+                      src={process.env.PUBLIC_URL + "/image/test14.png"}
                       alt="test"
                       style={{
                         width: "100%",
@@ -301,7 +301,7 @@ const MainPage = () => {
                 >
                   <div className={style.contentsbox}>
                     <img
-                      src={process.env.PUBLIC_URL + "/image/test11.jpg"}
+                      src={process.env.PUBLIC_URL + "/image/test16.jpg"}
                       alt="test"
                       style={{
                         width: "100%",
@@ -353,7 +353,7 @@ const MainPage = () => {
                 >
                   <div className={style.contentsbox}>
                     <img
-                      src={process.env.PUBLIC_URL + "/image/news4.jpg"}
+                      src={process.env.PUBLIC_URL + "/image/test17.jpg"}
                       alt="test"
                       style={{
                         width: "100%",
