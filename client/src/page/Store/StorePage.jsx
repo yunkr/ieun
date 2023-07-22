@@ -43,6 +43,7 @@ const StorePage = () => {
   const [stoerList, setStoreList] = useState([]);
   const [page, setPage] = useState(1);
   const [isLoding, setIsLoding] = useState(false);
+  const [searchParam, setSearchParam] = useState("");
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -88,7 +89,7 @@ const StorePage = () => {
         })
         .catch((err) => console.log(err));
     }
-  }, [sort, kategorie]);
+  }, [sort, kategorie, searchParam]);
 
   const handleScroll = () => {
     // 스크롤 이벤트 핸들러
@@ -179,7 +180,7 @@ const StorePage = () => {
 
   return (
     <div>
-      <Header />
+      <Header url="store" setSearchParam={setSearchParam}/>
       <div id={style.container}>
         <div id={style.containerup}>
           <div id={style.blank}></div>
