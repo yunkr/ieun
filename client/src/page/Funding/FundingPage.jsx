@@ -39,6 +39,7 @@ const FundingPage = () => {
   const [fundingList, setFundingList] = useState([]);
   const [page, setPage] = useState(1);
   const [isLoding, setIsLoding] = useState(false);
+  const [role,setrole] = useState("");
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -46,6 +47,19 @@ const FundingPage = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  useEffect(() => {
+    axios
+      .get(`/members/${userData.memberId}`)
+      .then((res) => {
+        console.log(res);
+        console.log(res.data.data.memberRole)
+        setrole(res.data.data.memberRole)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [userData.memberId,userData.memberRole]);
 
   useEffect(() => {
     axios({
@@ -195,7 +209,7 @@ const FundingPage = () => {
                 <button id={style.sorttext2} className={`${sort === "ascending" ? style.selectsorttext : ""}`} onClick={handleChange} value={"ascending"}>오래된 순</button>
               </div>
             </div>
-            {localStorage.getItem("token") ? (
+            {role === "MEMBER_UPCYCLER"? (
               <Link to="/fundingcreate">
                 <button id={style.fundingButton}>펀딩 제품 등록</button>
               </Link>
