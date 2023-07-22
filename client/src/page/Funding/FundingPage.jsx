@@ -40,7 +40,9 @@ const FundingPage = () => {
   const [page, setPage] = useState(1);
   const [isLoding, setIsLoding] = useState(false);
   const [role,setrole] = useState("");
-  const [searchParam, setSearchParam] = useState("");
+  const urlParams = new URL(window.location.href).searchParams;
+  const serch = urlParams.get("serch");
+  const [searchParam, setSearchParam] = useState(serch);
   
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -63,31 +65,54 @@ const FundingPage = () => {
   }, [userData.memberId,userData.memberRole]);
 
   useEffect(() => {
-    axios({
-      url: "/upcyclings/descending?page=1&size=8",
-      method: "get",
-    })
-      .then((response) => {
-        setFundingList(response.data.data);
-        console.log(response.data.data);
-        setIsLoding(true);
+    if (searchParam) {
+      axios({
+        url: `/upcyclings/search?page=1&size=8&searchKeyword=${searchParam}`,
+        method: "get",
       })
-      .catch((err) => console.log(err));
+        .then((response) => {
+          setFundingList(response.data.data);
+          setIsLoding(true);
+        })
+        .catch((err) => console.log(err));
+    } else {
+      axios({
+        url: "/upcyclings/descending?page=1&size=8",
+        method: "get",
+      })
+        .then((response) => {
+          console.log(response.data.data);
+          setIsLoding(true);
+        })
+        .catch((err) => console.log(err));
+    }
   }, []);
 
   useEffect(() => {
+    setIsLoding(false);
+    setPage(1);
     if (searchParam) {
       if (kategorie === 0) {
         axios({
-          url: `/upcyclings/search?searchKeyword=${searchParam}`,
+          url: `/upcyclings/search?page=1&size=8&sort=${sort}&searchKeyword=${searchParam}`,
           method: "get",
-      })
-      .then((response) => {
-        console.log(response);
-        setFundingList(response.data);
-        setIsLoding(true);
-      })
-      .catch((err) => console.log(err));
+        })
+          .then((response) => {
+            console.log(response);
+            setFundingList(response.data.data);
+            setIsLoding(true);
+          })
+          .catch((err) => console.log(err));
+      } else {
+        axios({
+          url: `/upcyclings/search?page=1&size=8&sort=${sort}&categoryId=${kategorie}&searchKeyword=${searchParam}`,
+          method: "get",
+        })
+          .then((response) => {
+            setFundingList(response.data.data);
+            setIsLoding(true);
+          })
+          .catch((err) => console.log(err));
       }
     } else {
       if (kategorie === 0) {
@@ -105,11 +130,11 @@ const FundingPage = () => {
           url: `/upcyclings/${sort}/categories/${kategorie}?page=1&size=8`,
           method: "get",
         })
-        .then((response) => {
-          setFundingList(response.data.data);
-          setIsLoding(true);
-        })
-        .catch((err) => console.log(err));
+          .then((response) => {
+            setFundingList(response.data.data);
+            setIsLoding(true);
+          })
+          .catch((err) => console.log(err));
       }
     }
   }, [sort, kategorie, searchParam]);
@@ -126,27 +151,50 @@ const FundingPage = () => {
 
   useEffect(() => {
     if (page > 1) {
-      if (kategorie === 0) {
-        axios({
-          url: `/upcyclings/${sort}?page=${page}&size=8`,
-          method: "get",
-        })
-          .then((response) => {
-            setFundingList((prev) => [...prev, ...response.data.data]);
+      if (searchParam) {
+        if (kategorie === 0) {
+          axios({
+            url: `/upcyclings/search?page=${page}&size=8&sort=${sort}&searchKeyword=${searchParam}`,
+            method: "get",
           })
-          .catch((err) => console.log(err));
+            .then((response) => {
+              setFundingList((prev) => [...prev, ...response.data.data]);
+            })
+            .catch((err) => console.log(err));
+        } else {
+          axios({
+            url: `/upcyclings/search?page=${page}&size=8&sort=${sort}&categoryId=${kategorie}&searchKeyword=${searchParam}`,
+            method: "get",
+          })
+            .then((response) => {
+              setFundingList((prev) => [...prev, ...response.data.data]);
+            })
+            .catch((err) => console.log(err));
+        }
       } else {
-        axios({
-          url: `/upcyclings/${sort}/categories/${kategorie}?page=${page}&size=8`,
-          method: "get",
-        })
-          .then((response) => {
-            setFundingList((prev) => [...prev, ...response.data.data]);
+        if (kategorie === 0) {
+          axios({
+            url: `/upcyclings/${sort}?page=${page}&size=8`,
+            method: "get",
           })
-          .catch((err) => console.log(err));
+            .then((response) => {
+              setFundingList((prev) => [...prev, ...response.data.data]);
+            })
+            .catch((err) => console.log(err));
+        } else {
+          axios({
+            url: `/upcyclings/${sort}/categories/${kategorie}?page=${page}&size=8`,
+            method: "get",
+          })
+            .then((response) => {
+              setFundingList((prev) => [...prev, ...response.data.data]);
+            })
+            .catch((err) => console.log(err));
+        }
       }
     }
   }, [page]);
+	
 
   const handleChange = (event) => {
     setSort(event.target.value);
@@ -210,7 +258,7 @@ const FundingPage = () => {
 
   return (
     <div>
-      <Header url="funding" setSearchParam={setSearchParam}/>
+      <Header url="funding" setSearchParam={setSearchParam} />
       <div id={style.container}>
         <div id={style.containerup}>
           <div id={style.blank}></div>
