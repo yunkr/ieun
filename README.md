@@ -97,7 +97,7 @@
 **윤승현**
  - Upcycling CRUD
  - Funding CRUD
- - Order
+ - Order CRUD
  - 검색기능
  - Redis 로그아웃
  - 인증번호 이메일 
@@ -105,6 +105,49 @@
 
 </div>
 </details>
+
+<br>
+
+## 🔗 프로젝트 구현 내용(내 담당)
+
+
+<br>
+ 
+**Upcycling CRUD**
+- Spring MVC 아키텍처를 활용하여 Upcycling CRUD(Create, Read, Update, Delete) 기능을 구현
+- Controller에서 HTTP 요청을 처리하여 모델과 뷰를 연결하였으며, 각각의 요청에 대응하는 핸들러 메서드를 정의하여 비즈니스 로직을 수행
+- 📂[[블로그 참고]](https://tmdgus416.tistory.com/168)
+  
+<br>
+
+**Funding CRUD**
+- Spring MVC 아키텍처를 활용하여 Upcycling CRUD(Create, Read, Update, Delete) 기능을 구현
+- Controller에서 HTTP 요청을 처리하여 모델과 뷰를 연결하였으며, 각각의 요청에 대응하는 핸들러 메서드를 정의하여 비즈니스 로직을 수행
+- 📂[[블로그 참고]](https://tmdgus416.tistory.com/172)
+
+<br>
+
+**Order CRUD**
+- Spring MVC 아키텍처를 활용하여 Upcycling CRUD(Create, Read, Update, Delete) 기능을 구현
+- Controller에서 HTTP 요청을 처리하여 모델과 뷰를 연결하였으며, 각각의 요청에 대응하는 핸들러 메서드를 정의하여 비즈니스 로직을 수행
+- 📂[[블로그 참고]](https://tmdgus416.tistory.com/173)
+
+<br>
+
+**검색기능**
+- 웹 애플리케이션에서 효율적인 검색 기능을 구현하기 위해 Pagination(페이지네이션)을 활용
+- Spring MVC 아키텍처에서 컨트롤러를 통해 클라이언트의 요청을 처리하고, 비즈니스 로직을 수행하는 핸들러 메서드를 정의
+- 데이터베이스에서 데이터를 검색하고 Pagination을 적용하기 위해 Spring Data JPA를 사용
+- 📂[[블로그 참고]](https://tmdgus416.tistory.com/174)
+
+<br>
+
+**인증번호 이메일**
+- Spring Boot의 JavaMailSender를 활용하여 이메일 전송 로직을 구현
+- 서버에서는 입력된 인증번호를 데이터베이스에서 해당 회원의 인증번호와 비교하여 유효성을 검증
+- 📂[[블로그 참고]](https://tmdgus416.tistory.com/169)
+
+
 
 <br>
 <br/>
