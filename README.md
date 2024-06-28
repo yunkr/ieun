@@ -202,11 +202,7 @@
 <br>
 
 ## 📃 Docs
-🔗 [사용자 요구사항 정의서](https://www.notion.so/codestates/8c196b9d66824e8da7df5ffe52834501)
-<br>
 🔗 [storyboard](https://www.figma.com/file/7M0HeeOe0d34axXiaK8Ea8/Untitled?type=design&node-id=0-1&mode=design&t=oWQyRcSpLjWNBqck-0)
-<br>
-🔗 [개발자 테스트 체크리스트](https://www.notion.so/codestates/3-964a8f586b6a478b8dd68cc8991086e7)
 <br>
 🔗 [API 명세서](https://docs.google.com/spreadsheets/d/1QsXQFmNAr8DTtSEDhEi4WC0H93a3KvxhYUm1S8flrXI/edit?gid=0#gid=0)
 
